@@ -7,14 +7,7 @@ public class TicketService : ITicketService
 {
     public Ticket Create(User user, Reys reys)
     {
-        Ticket ticket = new Ticket
-        {
-            Id = Guid.NewGuid(),
-            UserId = user.Id,
-            ReysId = reys.Id,
-            Price = reys.Price,
-            PurchasedAt = DateTime.Now
-        };
+        Ticket ticket = new Ticket(user.Id, reys.Id, reys.Price);
         return ticket;
     }
 

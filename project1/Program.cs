@@ -9,7 +9,6 @@ namespace project1
     {
         static void Main(string[] args)
         {
-
             IReysService reysService = new ReysService();
             List<Reys> reyslar = reysService.GetAll();
 
@@ -111,9 +110,6 @@ namespace project1
                 if (right && choose >= 1 && choose <= reyslar.Count)
                 {
                     Reys reys = reyslar[choose - 1];
-
-
-
 
                     if (reys.AvailableSeats > 0)
                     {
@@ -282,7 +278,7 @@ namespace project1
         static DateTime AskBirthday()
         {
             DateTime chooseBirthday;
-            while (true)    
+            while (true)
             {
 
                 Console.Write("Tug'ulgan sana (kk.oo.yyyy) > ");

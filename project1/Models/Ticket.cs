@@ -7,4 +7,15 @@ public class Ticket
     public Guid ReysId { get; set; }
     public decimal Price { get; set; }
     public DateTime PurchasedAt { get; set; }
+
+    public Ticket(Guid userId, Guid reysId, decimal price)
+    {
+        Id = Guid.NewGuid();
+        UserId = userId;
+        ReysId = reysId;
+        Price = price;
+        PurchasedAt = DateTime.Now;
+    }
+
+    public Ticket() {}
 }
