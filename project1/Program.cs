@@ -74,9 +74,16 @@ namespace project1
 
                     Ticket tanlanganChipta = tickets[chooseCansele - 1];
 
+                    if (tanlanganChipta.Status == TicketStatus.Cancelled)
+                    {
+                        Console.WriteLine("\nBu chipta allaqachon bekor qilingan!\n");
+                        continue;
+                    }
+
                     Reys? topilganflight = reysService.FindById(reyslar, tanlanganChipta.ReysId);
 
-                    tickets.Remove(tanlanganChipta);
+                    tanlanganChipta.Status = TicketStatus.Cancelled;
+
                     ticketService.Save(tickets);
 
                     if (topilganflight != null)
@@ -84,7 +91,7 @@ namespace project1
                         Console.WriteLine($"Tanlangan chipta: {topilganflight.From} -> {topilganflight.To}");
                         topilganflight.AvailableSeats++;
                         reysService.Save(reyslar);
-                        Console.WriteLine($"{topilganflight.From} -> {topilganflight.To} chipta o'chirildi.");
+                        Console.WriteLine($"{topilganflight.From} -> {topilganflight.To} Chipta bekor qilindi.");
                     }
 
                     Console.WriteLine();
@@ -198,7 +205,7 @@ namespace project1
                 {
                     yolovchi = $"{topilganUser.LastName} {topilganUser.FirstName}";
                 }
-                Console.WriteLine($"{i + 1}. Narxi: {showTicket.Price} | Yo'lovchi: {yolovchi} | Yo'nalish: {yonalish}");
+                Console.WriteLine($"{i + 1}. Narxi: {showTicket.Price} | Yo'lovchi: {yolovchi} | Yo'nalish: {yonalish} | Holati: {showTicket.Status}");
             }
         }
 
@@ -263,7 +270,7 @@ namespace project1
             while (true)
             {
                 Console.Write($"{label} > ");
-                name = (Console.ReadLine() ?? "").Trim();
+                name = (Console.ReadLine() ?? "").Trim().ToUpper();
 
                 if (!Validator.IsValidName(name))
                 {

@@ -7,6 +7,7 @@ public class Ticket
     public Guid ReysId { get; set; }
     public decimal Price { get; set; }
     public DateTime PurchasedAt { get; set; }
+    public TicketStatus Status { get; set; }
 
     public Ticket(Guid userId, Guid reysId, decimal price)
     {
@@ -15,6 +16,7 @@ public class Ticket
         ReysId = reysId;
         Price = price;
         PurchasedAt = DateTime.Now;
+        Status = TicketStatus.Active;
     }
 
     public Ticket() {}
